@@ -1,10 +1,10 @@
 package gr.aueb.cf.schoolapp.mapper;
 
-import gr.aueb.cf.schoolapp.dto.TeacherFiltersDTO;
-import gr.aueb.cf.schoolapp.dto.TeacherInsertDTO;
-import gr.aueb.cf.schoolapp.dto.TeacherReadOnlyDTO;
-import gr.aueb.cf.schoolapp.dto.TeacherUpdateDTO;
+import gr.aueb.cf.schoolapp.core.enums.RoleType;
+import gr.aueb.cf.schoolapp.dto.*;
 import gr.aueb.cf.schoolapp.model.Teacher;
+import gr.aueb.cf.schoolapp.model.User;
+import gr.aueb.cf.schoolapp.security.SecUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -34,18 +34,26 @@ public class Mapper {
     public static Map<String, Object> mapToCriteria(TeacherFiltersDTO filtersDTO) {
         Map<String, Object> filters = new HashMap<>();
 
-        if (!(filtersDTO.getFirstname() == null) && !(filtersDTO.getFirstname().isEmpty())) {
+        if (filtersDTO.getFirstname() != null && !filtersDTO.getFirstname().isEmpty()) {
             filters.put("firstname", filtersDTO.getFirstname());
         }
 
-        if (!(filtersDTO.getLastname() == null) && !(filtersDTO.getLastname().isEmpty())) {
+        if (filtersDTO.getLastname() != null && !filtersDTO.getLastname().isEmpty()) {
             filters.put("lastname", filtersDTO.getLastname());
         }
 
-        if (!(filtersDTO.getVat() == null) && !(filtersDTO.getVat().isEmpty())) {
+        if (filtersDTO.getVat() != null && !filtersDTO.getVat().isEmpty()) {
             filters.put("vat", filtersDTO.getVat());
         }
         return filters;
+    }
+
+    public static User maptoUser(UserInsertDTO dto) {
+        return new User(null, dto.getUsername(), SecUtil.hashPassword(dto.getPassword()), RoleType.valueOf(dto.getRole()));
+    }
+
+    public static UserReadOnlyDTO mapToUserReadOnlyDTO(User user) {
+        return new UserReadOnlyDTO(user.getId(), user.getUsername(), user.getPassword(), user.getRoleType().name());
     }
 }
 
