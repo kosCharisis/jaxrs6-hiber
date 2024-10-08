@@ -70,7 +70,7 @@ public abstract class AbstractDAO<T extends IdentifiableEntity> implements IGene
     }
 
     @Override  // to do
-    public List<? extends T> getByCriteria(Map<String, Object> criteria) {
+    public List<T> getByCriteria(Map<String, Object> criteria) {
         return getByCriteria(getPersistenceClass(), criteria);
     }
 
@@ -85,7 +85,10 @@ public abstract class AbstractDAO<T extends IdentifiableEntity> implements IGene
         selectQuery.select(entityRoot).where(predicates.toArray(new Predicate[0]));
         TypedQuery<T> query = em.createQuery(selectQuery);
         addParametersToQuery(query, criteria);
-        return query.getResultList();
+        List<T> entitiesToReturn = query.getResultList();
+        if (entitiesToReturn !=null) System.out.println("IN getBycriteriaDAO" +Arrays.toString(entitiesToReturn.toArray()));
+        else System.out.println("IS NULL");
+        return entitiesToReturn;
     }
 
     protected List<Predicate> getPredicatesList(CriteriaBuilder builder, Root<T> entityRoot, Map<String , Object> criteria) {
@@ -114,7 +117,7 @@ public abstract class AbstractDAO<T extends IdentifiableEntity> implements IGene
     protected void addParametersToQuery(TypedQuery<?> query, Map<String, Object> criteria) {
         for (Map.Entry<String, Object> entry : criteria.entrySet()) {
             Object value = entry.getValue();
-            query.setParameter(buildParameterAlias(entry.getKey()), value);
+            query.setParameter(buildParameterAlias(entry.getKey()), value + "%");
         }
     }
 

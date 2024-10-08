@@ -21,7 +21,7 @@ public class AppExceptionMapper implements ExceptionMapper<EntityGenericExceptio
             status = Response.Status.BAD_REQUEST;
         } else if (exception instanceof EntityNotAuthorizedException) {
             status = Response.Status.UNAUTHORIZED;
-        } else if (exception instanceof EntityInvalidArgumentException) {
+        } else if (exception instanceof EntityAlreadyExistsException) {
             status = Response.Status.CONFLICT;
         } else if (exception instanceof AppServerException) {
             status = Response.Status.SERVICE_UNAVAILABLE;
