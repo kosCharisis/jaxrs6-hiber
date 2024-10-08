@@ -1,13 +1,10 @@
 package gr.aueb.cf.schoolapp.mapper;
 
-//import gr.aueb.cf.schoolapp.core.enums.RoleType;
 import gr.aueb.cf.schoolapp.core.enums.RoleType;
 import gr.aueb.cf.schoolapp.dto.*;
 import gr.aueb.cf.schoolapp.model.Teacher;
 import gr.aueb.cf.schoolapp.model.User;
 import gr.aueb.cf.schoolapp.security.SecUtil;
-//import gr.aueb.cf.schoolapp.model.User;
-//import gr.aueb.cf.schoolapp.security.SecUtil;
 
 import java.util.HashMap;
 import java.util.List;
