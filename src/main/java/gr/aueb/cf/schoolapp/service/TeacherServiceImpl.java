@@ -126,7 +126,7 @@ public class TeacherServiceImpl implements ITeacherService {
                             .map(Mapper::mapToTeacherReadOnlyDTO)
                     .orElseThrow(() -> new EntityNotFoundException("Teacher", "Teacher with id: " + id + " not found"));
             JPAHelper.commitTransaction();
-            LOGGER.info("Teacher with id {} was deleted", id);
+            LOGGER.info("Teacher with id {} was found", id);
             return readOnlyDTO;
         } catch (EntityNotFoundException e) {
 //            JPAHelper.rollbackTransaction();

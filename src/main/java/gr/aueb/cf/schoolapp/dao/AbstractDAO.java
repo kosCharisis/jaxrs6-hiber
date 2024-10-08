@@ -86,7 +86,7 @@ public abstract class AbstractDAO<T extends IdentifiableEntity> implements IGene
         TypedQuery<T> query = em.createQuery(selectQuery);
         addParametersToQuery(query, criteria);
         List<T> entitiesToReturn = query.getResultList();
-        if (entitiesToReturn !=null) System.out.println("IN getBycriteriaDAO" +Arrays.toString(entitiesToReturn.toArray()));
+        if (entitiesToReturn !=null) System.out.println("IN getBycriteriaDAO" + Arrays.toString(entitiesToReturn.toArray()));
         else System.out.println("IS NULL");
         return entitiesToReturn;
     }

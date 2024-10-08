@@ -10,6 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class TeacherFiltersDTO {
+
     private String firstname;
     private String lastname;
     private String vat;

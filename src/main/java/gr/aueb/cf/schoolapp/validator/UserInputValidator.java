@@ -21,7 +21,7 @@ public class UserInputValidator {
         Map<String, String> errors = new HashMap<>();
 
         if (!dto.getPassword().equals(dto.getConfirmPassword())) {
-            errors.put("confirmPassword", "To password και το  confirmPassword δεν είναι το ίδιο");
+            errors.put("confirmPassword", "To password και το confirmPassword δεν είναι το ίδιο");
         }
 
         if (userService.isEmailExists(dto.getUsername())) {
